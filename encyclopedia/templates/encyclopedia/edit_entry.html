@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Entry
+{% endblock %}
+
+{% block body %}
+    <h2>{{ title }}</h2>
+    <br>
+    <form action="{% url 'edit_entry' title=title %}" method="post">
+        {% csrf_token %}
+        <h5>Content:</h5>
+        <textarea name="content" style="height: 400px;">{{ content }}</textarea>
+        {% if error_msg_c %}
+            <p style="color: red;">{{ error_msg_c }}</p>
+        {% endif %}
+        <div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </div> 
+    </form>
+{% endblock %}

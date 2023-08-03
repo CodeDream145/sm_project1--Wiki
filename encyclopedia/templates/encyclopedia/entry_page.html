@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if not content %}
+        Error 404
+    {% else %}
+        {{ title }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if not content %}
+        <h2 style="text-align: center; margin-top:200px;">Error: Requested Page Not Found!</h3>
+    {%  else %}
+        {{ content|safe }}
+        <a href="{% url 'edit_entry' title=title %}"><button class="btn btn-info" type="button">Edit Page</button></a>
+    {% endif %}
+{% endblock %}

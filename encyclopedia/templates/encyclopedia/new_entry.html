@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Add Entry
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Entry</h1>
+    <form action="{% url 'new_entry' %}" method="post">
+        {% csrf_token %}
+        <h5>Title:</h5>
+        <input type="text" name="title" placeholder="Title" value="{{ title }}">
+        {% if error_msg_t %}
+            <p style="color: red;">{{ error_msg_t }}</p>
+        {% endif %}
+        <h5>Content:</h5>
+        <textarea name="content" style="height: 400px;">{{ content }}</textarea>
+        {% if error_msg_c %}
+            <p style="color: red;">{{ error_msg_c }}</p>
+        {% endif %}
+        <div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </div> 
+    </form>
+{% endblock %}
